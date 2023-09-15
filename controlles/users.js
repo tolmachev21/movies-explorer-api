@@ -90,6 +90,8 @@ module.exports.updateUser = (req, res, next) => {
     .catch((err) => {
       if (err instanceof mongoose.Error.ValidationError) {
         next(new BadRequestError('Переданы некорректные данные при обновлении профиля'));
+      } else if (err.code === 11000) {
+        next(new ConflictError('Такой пользователь уже зарегистрирован'));
       } else {
         next(err);
       }

@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const {
-  getMovies,
+  getMyMovies,
   createMovie,
   deleteMovie,
 } = require('../controlles/movies');
 const { urlRegex } = require('../utils/constants');
 
-router.get('/', getMovies);
+router.get('/', getMyMovies);
 
 router.post('/', celebrate({
   body: Joi.object().keys({
